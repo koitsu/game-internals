@@ -10,5 +10,5 @@
 | $0840   |    1 | Gold, thousandths (BCD encoded, e.g. 0x02 = 2000)       |
 | $0841   |    1 | Gold, hundredths\*10 (BCD encoded, e.g. 0x39 = 390)     |
 | $0842   |    1 | Gold max, thousandths (BCD encoded, e.g. 0x10 = 10000)  |
-| $0842   |    1 | Gold max, hundreths\*10 (BCD encoded, e.g. 0x22 = 220)  |
+| $0843   |    1 | Gold max, hundreths\*10 (BCD encoded, e.g. 0x22 = 220)  |
 
