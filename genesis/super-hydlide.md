@@ -48,15 +48,15 @@
 | Range        | Description                    |
 | ------------ | ------------------------------ |
 | 0x20         | Space (ASCII)                  |
-| 0x21 to 0x3a | Uppercase A-Z                  |
-| 0x3b         | Hyphen                         |
-| 0x3c         | Exclamation mark               |
+| 0x21 to 0x3A | Uppercase `A-Z`                |
+| 0x3B         | Hyphen                         |
+| 0x3C         | Exclamation mark               |
 | 0x41         | Japanese maru character        |
 | 0x42         | Japanese open-quote character  |
 | 0x43         | Japanese close-quote character |
-| 0x61 to 0x7a | Lowercase a-z (ASCII)          |
-| 0x7b         | Period                         |
-| 0x7e         | Comma                          |
+| 0x61 to 0x7A | Lowercase `a-z` (ASCII)        |
+| 0x7B         | Period                         |
+| 0x7E         | Comma                          |
 
 # Item Types
 
@@ -92,7 +92,8 @@
 | $2A   | Talisman               | Yes         |
 | $2B   | Ration of food         | No          |
 | $3C   | ID card                | No          |
-| $3D   | Cloud Stone            | Yes         |
+| $3D   | Cloud Stone            | ?           |
+| $3E   | Horn                   | ?           |
 | $42   | Space suit             | Yes         |
 | $43   | Time-door talisman     | No          |
 | $44   | Holy water             | No          |
