@@ -2,43 +2,42 @@
 
 ## RAM Locations
 
-| Address | Size | Description                                                     |
-| ------- | ---- | --------------------------------------------------------------- |
-| $0200   | 256  | Sprite DMA region                                               |
-| $0301   | 1    | Frame counter                                                   |
-|         | 1    | Time (0=time up)                                                |
-| $0306   | 1    | RNG buffer index/offset (see "Trojan's pseudo RNG")             |
-| $0320   | 1    | Player 1 score, millionths (range 0-9)                          |
-| $0321   | 1    | Player 1 score, hundred thousandths (range 0-9)                 |
-| $0322   | 1    | Player 1 score, ten thousandths (range 0-9)                     |
-| $0323   | 1    | Player 1 score, thousandths (range 0-9)                         |
-| $0324   | 1    | Player 1 score, hundreths (range 0-9)                           |
-| $0325   | 1    | Player 1 score, tenths (range 0-9)                              |
-| $0326   | 1    | Player 2 score, millionths (range 0-9)                          |
-| $0327   | 1    | Player 2 score, hundred thousandths (range 0-9)                 |
-| $0328   | 1    | Player 2 score, ten thousandths (range 0-9)                     |
-| $0329   | 1    | Player 2 score, thousandths (range 0-9)                         |
-| $032A   | 1    | Player 2 score, hundreths (range 0-9)                           |
-| $032B   | 1    | Player 2 score, tenths (range 0-9)                              |
-| $032C   | 1    | High score, millionths (range 0-9)                              |
-| $032D   | 1    | High score, hundred thousandths (range 0-9)                     |
-| $032E   | 1    | High score, ten thousandths (range 0-9)                         |
-| $032F   | 1    | High score, thousandths (range 0-9)                             |
-| $0330   | 1    | High score, hundreths (range 0-9)                               |
-| $0331   | 1    | High score, tenths (range 0-9)                                  |
-| $0332   | 1    | Time, hundredths place (range 0-9)                              |
-| $0333   | 1    | Time, tenths place (range 0-9)                                  |
-| $0334   | 1    | Time, ones place (range 0-9)                                    |
-| $0335   | 1    | Player health / Player 1 health (VS Mode) (see "Health")        |
-| $0336   | 1    | Player 2 health (VS Mode only) (see "Health")                   |
-| $03CB   | 1    | Current player jump boots counter (see "Jump Boots")            |
-| $03CC   | 1    | Current player speed boost (0=no, 1=yes) (see "Speed")          |
-| $03CD   | 1    | Current player damage modifier (see "Damage Modifier / P item") |
-| $03D0   | 1    | Current player lives remaining (max 9) (see "Lives")            |
-| $03D1   | 1    | Phase number / boss type (see "Boss Types")                     |
-| $03E0   | 1    | Player 1 lives remaining (max 9) (see "Lives")                  |
-| $03F0   | 1    | Player 2 lives remaining (max 9) (see "Lives")                  |
-| $062B   | 1    | Armadillon roll/loop count (see "Armadillon roll count")        |
+| Address | Size | Description                                                      |
+| ------- | ---- | ---------------------------------------------------------------  |
+| $0200   | 256  | Sprite DMA region                                                |
+| $0301   | 1    | Frame counter                                                    |
+| $0306   | 1    | RNG buffer index/offset (see "Trojan's pseudo RNG")              |
+| $0320   | 1    | Player 1 score, millionths (range 0-9)                           |
+| $0321   | 1    | Player 1 score, hundred thousandths (range 0-9)                  |
+| $0322   | 1    | Player 1 score, ten thousandths (range 0-9)                      |
+| $0323   | 1    | Player 1 score, thousandths (range 0-9)                          |
+| $0324   | 1    | Player 1 score, hundreths (range 0-9)                            |
+| $0325   | 1    | Player 1 score, tenths (range 0-9)                               |
+| $0326   | 1    | Player 2 score, millionths (range 0-9)                           |
+| $0327   | 1    | Player 2 score, hundred thousandths (range 0-9)                  |
+| $0328   | 1    | Player 2 score, ten thousandths (range 0-9)                      |
+| $0329   | 1    | Player 2 score, thousandths (range 0-9)                          |
+| $032A   | 1    | Player 2 score, hundreths (range 0-9)                            |
+| $032B   | 1    | Player 2 score, tenths (range 0-9)                               |
+| $032C   | 1    | High score, millionths (range 0-9)                               |
+| $032D   | 1    | High score, hundred thousandths (range 0-9)                      |
+| $032E   | 1    | High score, ten thousandths (range 0-9)                          |
+| $032F   | 1    | High score, thousandths (range 0-9)                              |
+| $0330   | 1    | High score, hundreths (range 0-9)                                |
+| $0331   | 1    | High score, tenths (range 0-9)                                   |
+| $0332   | 1    | Time, hundredths place (range 0-9)                               |
+| $0333   | 1    | Time, tenths place (range 0-9)                                   |
+| $0334   | 1    | Time, ones place (range 0-9)                                     |
+| $0335   | 1    | Current player health / Player 1 health (VS Mode) (see "Health") |
+| $0336   | 1    | Player 2 health (VS Mode only) (see "Health")                    |
+| $03CB   | 1    | Current player jump boots counter (see "Jump Boots")             |
+| $03CC   | 1    | Current player speed boost (0=no, 1=yes) (see "Speed")           |
+| $03CD   | 1    | Current player damage modifier (see "Damage Modifier / P item")  |
+| $03D0   | 1    | Current player lives remaining (max 9) (see "Lives")             |
+| $03D1   | 1    | Phase number / boss type (see "Boss Types")                      |
+| $03E0   | 1    | Player 1 lives remaining (max 9) (see "Lives")                   |
+| $03F0   | 1    | Player 2 lives remaining (max 9) (see "Lives")                   |
+| $062B   | 1    | Armadillon roll/loop count (see "Armadillon roll count")         |
 
 ## ROM Locations
 
@@ -234,7 +233,7 @@ fact that they are not sequentially incremental:
 
 # Other reverse engineering notes
 
-* Trojan uses fixed sprite numbers for bosses, i.e. no [OAM cycling](https://www.kickstarter.com/projects/1101008925/lizard/posts/1582636#h:flickering))
+* Trojan uses fixed sprite numbers for bosses, i.e. no [OAM cycling](https://www.kickstarter.com/projects/1101008925/lizard/posts/1582636#h:flickering)
 * Sprite size 8x8 is used exclusively, i.e. no use of 8x16
 * [OAM DMA](https://wiki.nesdev.com/w/index.php/PPU_OAM#DMA) is used heavily, using page 2 (RAM $0200-02FF) as the source
 * There are no boss screens that involve vertical movement, so we can use sprite X position for a RE starting point
