@@ -150,7 +150,7 @@ How the loop count is populated is surprisingly simple: it's based on a pseudo
 RNG function that's used throughout the game.
 
 The code at $A5AE-A5B3 (routine $A5A9-A5CD) is responsible for updating the
-loop count (comments mine):
+loop count:
 
 ```
 jsr $FF37               ; call the pseudo RNG, result in A
@@ -172,7 +172,7 @@ ensuring the contents of $0310-031F were all zero.)
 Trojan's random number generator is very basic (some might say stupid), but
 it's "good enough" given the kind of game it is.
 
-The subroutine is $FF37.  Here is its code (comments mine):
+The subroutine is $FF37.  Here is its code:
 
 ```
 lda $0306               ; load A with $0306
