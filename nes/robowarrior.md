@@ -52,8 +52,8 @@ There are some Japanese web pages that cover this trick, so it's safe to
 assume outside of Nintendo Power, this wasn't well-known in the
 English-speaking world:
 
-* http://marie.saiin.net/~capsule/game/waza\_fc\_ha.html
 * https://urawaza.in/fc/bomberking.htm
+* http://marie.saiin.net/~capsule/game/waza_fc_ha.html
 * http://www5f.biglobe.ne.jp/~famicom/Urawaza/FC/BomberKing.htm
 * http://huurinsou.blog61.fc2.com/blog-entry-807.html (defunct)
 * http://hirobee.oops.jp/famikontalk/mugenzou.htm (attempts to download files on visit)
