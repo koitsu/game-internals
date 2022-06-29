@@ -44,7 +44,7 @@
 ## History
 
 As a kid, I learned of this trick from
-[Nintendo Power (Issue #9, page 78)](https://archive.org/details/Nintendo_Power_Issue001-Issue127/Nintendo%20Power%20Issue%20009%20November-December%201989)
+[Nintendo Power (Issue #9, page 78)](https://archive.org/details/Nintendo_Power_Issue001-Issue127/Nintendo%20Power%20Issue%20009%20November-December%201989).
 Years later I was surprised to see that GameFAQs and other websites on
 Robowarrior had no information it.
 
