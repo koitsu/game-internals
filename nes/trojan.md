@@ -153,38 +153,23 @@ The code at $A5AE-A5B3 (routine $A5A9-A5CD) is responsible for updating the
 loop count:
 
 ```
-jsr $FF37               ; call the pseudo RNG, result in A
-and #$03                ; limit its range to 0-3
-sta $062B               ; store in Armadillon roll/loop counter
+    jsr L_FF37          ; call the pseudo RNG at $FF37; result in A
+    and #$03            ; limit A range to 0-3
+    sta $062B           ; store in Armadillon roll/loop counter
 ```
 
-For details about $FF37, see the "Trojan's pseudo RNG" section elsewhere in
-this document.
+For details about $FF37, see [Pseudo RNG subroutine](#pseudo-rng-subroutine).
 
-In short: sadly, there does not seem to be a way to circumvent the way this
-works.  So to speedrunners looking for a way to guarantee Armadillon only rolls
-*once*: there doesn't seem to be a consistent way, sorry.  (You would need to
-bypass the use of the frame counter as an added value, in addition to somehow
-ensuring the contents of $0310-031F were all zero.)
+In short: there does not seem to be a way to circumvent the way this works.  So
+to speedrunners looking for a way to guarantee Armadillon only rolls *once*:
+there doesn't seem to be a consistent way, sorry.  (You would need to bypass
+the use of the frame counter as an added value, in addition to somehow ensuring
+the contents of $0310-031F were all zero.)
 
-# Trojan's pseudo RNG
+# Pseudo RNG subroutine
 
-Trojan's random number generator is very basic (some might say stupid), but
-it's "good enough" given the kind of game it is.
-
-The subroutine is $FF37.  Here is its code:
-
-```
-lda $0306               ; load A with $0306
-and #$0F                ; limit value range to 0-15 (i.e. $0310-031F)
-tax                     ; A --> X
-inc $0306               ; increment $0306
-lda $0310,X             ; load $0310+X
-clc                     ; ...
-adc $0301               ; add frame counter to A
-sta $0310,X             ; write A to $0310+X
-rts
-```
+Trojan's random number generator is very basic, but it's good enough given the
+kind of game it is.
 
 RAM locations $0310-031F (16 bytes) are used as a circular buffer containing
 random values that were previously populated (more on that in a moment).  The
@@ -193,49 +178,63 @@ used without worrying about, for example, multiple enemies getting the same
 random number (there is always that chance with this model, but it's less
 likely to happen).
 
+The pseudo RNG subroutine is at $FF37:
+
+```
+L_FF37:
+    lda $0306           ; load A with $0306
+    and #$0F            ; limit value range to 0-15 (i.e. $0310-031F)
+    tax                 ; A --> X
+    inc $0306           ; increment $0306
+    lda $0310,X         ; load $0310+X
+    clc                 ; ...
+    adc $0301           ; add frame counter to A
+    sta $0310,X         ; write A to $0310+X
+    rts
+```
+
 $0301 is the frame counter, which is a byte in RAM that is incremented every
-frame (i.e. once per NMI/VBlank), thus has a range of 0-255.
+NMI/VBlank (i.e. once per frame), thus has a range of 0-255.
 
-$0306 is incremented every time `jsr $FF37` is run.  Its value is limited to a
-range of 0-15 (matching the circular buffer size).  The value is initialised to
-$00 at the start of boss fights.  Think of $0306 as an index/offset into the
-$0310-031F region.
+$0306 is effectively an index/offset into the $0310-031F region in RAM.  Its
+value is limited to a range of 0-15 (matching the circular buffer size) and
+copied into the X register, and then $0306 is incremented by 1 (for the next
+time $FF37 is executed).
 
-The existing value at location `$0310+{whatever $0306 is}` is read, the frame
-counter added to it, and written back to the same location.  Rinse lather
-repeat every time the subroutine is called.
+The value at location $0310+X is read, the frame counter added to it, and then
+written back to the same $0310+X location.
+
+RAM location $0306 is pre-initialised to $00 at the start of boss fights.
 
 On system reset, the contents of $0310-031F are initialised using a very basic
 subroutine at $C061:
 
 ```
+L_C061:
     ldy #$10            ; Y = 16
     ldx #$00            ; A = $00
-L1: lda $C070,X         ; pre-generated buffer in ROM
+L1: lda L_C070,X        ; pre-generated values at ROM $C070-C07F
     sta $0310,X         ; write raw values to $0310+X
     inx                 ; X++
     dey                 ; Y--
     bne L1              ; repeat 16 times
     rts
+L_C070:
+    .byte $02,$08,$0D,$09,$0F,$01,$07,$04,$03,$0A,$06,$0B,$05,$0E,$00,$0C
 ```
 
-The values at ROM $C070-C07F are below.  There is nothing special about them,
-nor their offset/placement (ex. value $0B is at "offset" $0B), other than the
-fact that they are not sequentially incremental:
-
-```
-02 08 0D 09 0F 01 07 04 03 0A 06 0B 05 0E 00 0C
-```
+There is nothing special about the values at ROM $C070-C07F, nor their offset.
+The only thing unique about the values is that none of them are sequential.
 
 # Miscellaneous
 
-* Score will wrap from 9,999,999,900 to 0
+* Score wraps from 9,999,999,900 to 0
 
 # Other reverse engineering notes
 
 * Trojan uses fixed sprite numbers for bosses, i.e. no [OAM cycling](https://www.kickstarter.com/projects/1101008925/lizard/posts/1582636#h:flickering)
 * Sprite size 8x8 is used exclusively, i.e. no use of 8x16
-* [OAM DMA](https://wiki.nesdev.com/w/index.php/PPU_OAM#DMA) is used heavily, using page 2 (RAM $0200-02FF) as the source
+* [OAM DMA](https://wiki.nesdev.com/w/index.php/PPU_OAM#DMA) is heavily used, using page 2 (RAM $0200-02FF) as the source
 * There are no boss screens that involve vertical movement, so we can use sprite X position for a RE starting point
 * Use of save states is extremely helpful
 

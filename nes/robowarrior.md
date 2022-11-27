@@ -60,8 +60,7 @@ English-speaking world:
 
 In late 2016 I did
 [a write-up of this trick](https://forums.nesdev.org/viewtopic.php?t=14846)
-on the nesdev forum about this trick, but decided to import it here for
-safe keeping.
+on the nesdev forum, but decided to import it here for safe keeping.
 
 I've also amended it to include the relevancy of the background music
 needing to loop at least once, which was reverse-engineered by ruadath on
